@@ -477,7 +477,7 @@ void WiFiClient::flush() {
     }
     while(a){
         toRead = (a>WIFI_CLIENT_FLUSH_BUFFER_SIZE)?WIFI_CLIENT_FLUSH_BUFFER_SIZE:a;
-        res = recv(fd(), buf, toRead, MSG_DONTWAIT);
+        res = this->read(buf,toRead);
         if(res < 0) {
             log_e("fail on fd %d, errno: %d, \"%s\"", fd(), errno, strerror(errno));
             stop();
